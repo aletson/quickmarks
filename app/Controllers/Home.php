@@ -17,13 +17,9 @@ class Home extends BaseController
         $expansions = $this->Expansions->orderBy('id', 'desc')->get()->getResult();
         foreach ($expansions as $thisExpansion) {
           $thisExpansion->instances = [];
-          for ($instanceId = 1; $instanceId <= $thisExpansion->instances; $instanceId++) {
+          for ($instanceId = 1; $instanceId <= $thisExpansion->instance_count; $instanceId++) {
             $thisExpansion->instances[$instanceId] = new \stdClass();
-            $thisExpansion->instances[$instanceId]->zones = $this->Zones->where('expansion_id', $thisExpansion->id)->get()->getResult();
-            foreach ($thisExpansion->instances[$instanceId]->zones as $thisZone) {
-              $thisZone->marks = $this->Marks->where('zone_id', $thisZone->id)->get()->getResult();
-              //->where('r.instance_id', $instanceId)->join('reports r', 'r.id = marks.id')->select('marks.*, max(r.timestamp)')
-            }
+            $thisExpansion->instances[$instanceId]->marks = $this->Marks->join('zones z', 'marks.zone_id = z.id')->where('z.expansion_id', $thisExpansion->id)->get()->getResult();
           }
         }
         $data['json_marks'] = json_encode($expansions);

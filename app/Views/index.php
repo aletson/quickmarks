@@ -2,7 +2,7 @@
 
 <section>
 
-<?php print_r($marks); ?>
+<?php print_r($json_marks); ?>
 
 	<h1>About this page</h1>
 
