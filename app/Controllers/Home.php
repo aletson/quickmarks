@@ -12,6 +12,8 @@ class Home extends BaseController
     public function index()
     {
         $this->Marks = new Marks();
+        $this->Expansions = new Expansions();
+        $this->Zones = new Zones();
         $expansions = $this->Expansions->orderBy('id', 'desc')->findAll();
         foreach ($expansions as $thisExpansion) {
           for ($instanceId = 1; $instanceId <= $thisExpansion->instances; $instanceId++) {
