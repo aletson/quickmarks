@@ -17,9 +17,9 @@ class Home extends BaseController
         $expansions = $this->Expansions->orderBy('id', 'desc')->findAll();
         foreach ($expansions as $thisExpansion) {
           for ($instanceId = 1; $instanceId <= $thisExpansion->instances; $instanceId++) {
-            $thisExpansion[$instanceId]['zones'] = $this->Zones->findAll();
+            $thisExpansion->instances[$instanceId]['zones'] = $this->Zones->findAll();
             foreach ($thisExpansion[$instanceId]['zones'] as $thisZone) {
-              $thisZone['marks'] = $this->Marks->getMarksWithKillTimes($thisZone->id, $instanceId);
+              $thisZone->marks = $this->Marks->getMarksWithKillTimes($thisZone->id, $instanceId);
             }
           }
         }
