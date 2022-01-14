@@ -2,6 +2,8 @@
 
 <section>
 
+<?php print_r($marks); ?>
+
 	<h1>About this page</h1>
 
     <table><thead><tr><th>Mark name</th><th>timer</th></tr></thead><tbody>
