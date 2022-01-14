@@ -14,10 +14,11 @@ class Home extends BaseController
         $this->Marks = new Marks();
         $this->Expansions = new Expansions();
         $this->Zones = new Zones();
-        $expansions = $this->Expansions->orderBy('id', 'desc')->findAll();
+        $expansions = $this->Expansions->orderBy('id', 'desc')->get()->getResult();
         foreach ($expansions as $thisExpansion) {
           $thisExpansion->instances = [];
           for ($instanceId = 1; $instanceId <= $thisExpansion->instances; $instanceId++) {
+            $thisExpansion->instances[$instanceId] = new stdClass;
             $thisExpansion->instances[$instanceId]->zones = $this->Zones->where('expansion_id', $thisExpansion->id)->get()->getResult();
             foreach ($thisExpansion->instances[$instanceId]->zones as $thisZone) {
               $thisZone->marks = $this->Marks->getMarksWithKillTimes($thisZone->id, $instanceId);
