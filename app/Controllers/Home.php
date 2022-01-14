@@ -21,7 +21,7 @@ class Home extends BaseController
             $thisExpansion->instances[$instanceId] = new \stdClass();
             $thisExpansion->instances[$instanceId]->zones = $this->Zones->where('expansion_id', $thisExpansion->id)->get()->getResult();
             foreach ($thisExpansion->instances[$instanceId]->zones as $thisZone) {
-              $thisZone->marks = $this->Marks->getMarksWithKillTimes($thisZone->id, $instanceId);
+              $thisZone->marks = $this->Marks->where('zone_id', $thisZone->id)->join('reports r', 'r.id = marks.id')->where('r.instance_id', $instanceId)->select('marks.*, max(r.timestamp)')->get()->getResult();
             }
           }
         }
