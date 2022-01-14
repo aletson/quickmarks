@@ -18,7 +18,7 @@ class Home extends BaseController
         foreach ($expansions as $thisExpansion) {
           $thisExpansion->instances = [];
           for ($instanceId = 1; $instanceId <= $thisExpansion->instances; $instanceId++) {
-            $thisExpansion->instances[$instanceId] = new stdClass;
+            $thisExpansion->instances[$instanceId] = new stdClass();
             $thisExpansion->instances[$instanceId]->zones = $this->Zones->where('expansion_id', $thisExpansion->id)->get()->getResult();
             foreach ($thisExpansion->instances[$instanceId]->zones as $thisZone) {
               $thisZone->marks = $this->Marks->getMarksWithKillTimes($thisZone->id, $instanceId);
