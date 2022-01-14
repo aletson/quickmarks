@@ -2,14 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Models\Expansions;
+use App\Models\Zones;
 use App\Models\Marks;
+use App\Models\Reports;
 
 class Home extends BaseController
 {
     public function index()
     {
         $this->Marks = new Marks();
-        $expansions = $this->Expansions->orderBy('id', 'desc')->findAll();
+        var $expansions = $this->Expansions->orderBy('id', 'desc')->findAll();
         foreach ($expansions as $thisExpansion) {
           for ($instanceId = 1; $instanceId <= $thisExpansion->instances; $instanceId++) {
             $thisExpansion[$instanceId]['zones'] = $this->Zones->findAll();
