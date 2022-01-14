@@ -18,7 +18,7 @@ class Home extends BaseController
             }
           }
         }
-        $data['json_marks'] = json_encode($expansions)
+        $data['json_marks'] = json_encode($expansions);
         //now manipulate the data to pull out by instances
         echo view('header', $data);
         echo view('index', $data);
