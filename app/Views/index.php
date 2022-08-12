@@ -5,35 +5,31 @@
   <h1>About this page</h1>
 
   <?php /* <pre><?php print_r($json_marks); ?></pre> */ ?>
-
-  <table class="table table-dark table-striped">
-    <thead>
-      <tr>
-        <th>Mark name</th>
-        <th>timer</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      foreach ($expansions as $thisExpansion) {
-        echo '<tr><td colspan="2"><h3><center>' . $thisExpansion->name . '</center></h3></td></tr>';
-        foreach ($thisExpansion->zones as $thisZone) {
-          echo '<tr><td colspan="2"><h4>' . $thisZone->name . '</h4></td></tr>';
+  <?php
+  foreach ($expansions as $thisExpansion) {
+    echo '<h3><center>' . $thisExpansion->name . '</center></h3>';
+    foreach ($thisExpansion->zones as $thisZone) {
+      echo '<h4>' . $thisZone->name . '</h4>';
+  ?>
+      <table class="table table-dark table-striped">
+        <tbody>
+          <?php
           foreach ($thisZone->instances as $thisInstance) {
             if ($thisInstance->marks) {
               foreach ($thisInstance->marks as $thisMark) {
-      ?>
+          ?>
                 <tr data-mark="<?= $thisMark->id; ?>" data-instance-id="<?= $thisMark->instance; ?>">
                   <td><?php echo $thisMark->name; ?> <?php if (count($thisZone->instances) > 1) echo '<span class="badge badge-pill badge-light">' . $thisMark->instance . '</span>'; ?><?php if (isset($thisMark->nickname)) echo '<br /><small><i>&emsp;' . $thisMark->nickname . '</i></small>'; ?></td>
                   <td>last reported <span class="time" data-killed="<?= isset($thisMark->last_kill) ? $thisMark->last_kill : 'never'; ?>"></span><?php if (!isset($thisMark->last_kill) || $thisMark->last_kill < time() - 14400) { ?>
                       <!-- create button if >4 hours --><button class="btn btn-outline-light markButton btn-sm" data-mark="<?= $thisMark->id; ?>" data-instance="<?= $thisMark->instance; ?>">&nbsp;mark dead&nbsp;</button><?php } ?>
-          <?php }
+              <?php }
             }
-          }
-        }
-      } ?>
-    </tbody>
-  </table>
+          } ?>
+        </tbody>
+      </table>
+  <?php
+    }
+  } ?>
 </section>
 
 <!-- FOOTER: DEBUG INFO + COPYRIGHTS -->
