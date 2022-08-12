@@ -4,7 +4,7 @@
 
   <h1>About this page</h1>
 
-  <pre><?php print_r($json_marks); ?></pre>
+  <?php /* <pre><?php print_r($json_marks); ?></pre> */ ?>
 
   <table>
     <thead>
