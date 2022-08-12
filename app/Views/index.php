@@ -11,7 +11,7 @@
     foreach ($thisExpansion->zones as $thisZone) {
       echo '<h4>' . $thisZone->name . '</h4>';
   ?>
-      <table class="table table-dark table-striped">
+      <table class="table table-sm table-dark table-striped">
         <tbody>
           <?php
           foreach ($thisZone->instances as $thisInstance) {
