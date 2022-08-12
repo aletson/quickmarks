@@ -14,9 +14,9 @@
     <tbody>
       <?php
       foreach ($expansions as $thisExpansion) {
-        echo '<tr><td colspan="2"><h5><center>' . $expansion_name . '</center></h5></td></tr>';
+        echo '<tr><td colspan="2"><h5><center>' . $thisExpansion->name . '</center></h5></td></tr>';
         foreach ($thisExpansion->zones as $thisZone) {
-          echo '<tr><td colspan="2"><b>' . $zone_name . '</b></td></tr>';
+          echo '<tr><td colspan="2"><b>' . $thisZone->name . '</b></td></tr>';
           foreach ($thisZone->instances as $thisInstance) {
             foreach ($thisInstance->marks as $thisMark) {
       ?>
