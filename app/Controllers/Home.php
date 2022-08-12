@@ -17,11 +17,11 @@ class Home extends BaseController
     $this->Reports = new Reports();
     $expansions = $this->Expansions->orderBy('id', 'desc')->get()->getResult();
     foreach ($expansions as $thisExpansion) {
-      $thisExpansion->zones = $this->Zones->where('expansion_id', $thisExpansion->id)->orderBy('id', 'desc')->get()->getResult();
+      $thisExpansion->zones = $this->Zones->where('expansion_id', $thisExpansion->id)->orderBy('id', 'asc')->get()->getResult();
       foreach ($thisExpansion->zones as $thisZone) {
         for ($instanceId = 1; $instanceId <= $thisZone->instance_count; $instanceId++) {
           $thisZone->instances[$instanceId] = new \stdClass();
-          $thisZone->instances[$instanceId]->marks = $this->Marks->join('zones z', 'marks.zone_id = z.id')->join('expansions e', 'z.expansion_id = e.id')->join('reports r', 'r.mark_id = marks.id')->where('r.instance_id', $instanceId)->where('z.id', $thisZone->id)->select('marks.*, z.name as zone_name, e.name as expansion_name, max(r.tod) as tod')->get()->getResult();
+          $thisZone->instances[$instanceId]->marks = $this->Marks->join('zones z', 'marks.zone_id = z.id')->join('expansions e', 'z.expansion_id = e.id')->join('reports r', 'r.mark_id = marks.id', 'left outer')->where('r.instance_id', $instanceId)->where('z.id', $thisZone->id)->select('marks.*, z.name as zone_name, e.name as expansion_name, max(r.tod) as tod')->get()->getResult();
           foreach($thisZone->instances[$instanceId]->marks as $thisMark) {
             $thisMark->instance = $instanceId;
           }
