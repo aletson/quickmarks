@@ -25,7 +25,7 @@ class Home extends BaseController
             ->join('zones z', 'marks.zone_id = z.id')
             ->join('reports r', 'r.mark_id = marks.id and r.instance_id = ' . $instanceId, 'left outer')
             ->where('z.id', $thisZone->id)
-            ->select('marks.*, max(r.tod) as tod')->get()->getResult();
+            ->select('marks.*, max(r.tod) as last_kill')->get()->getResult();
           foreach($thisZone->instances[$instanceId]->marks as $thisMark) {
             $thisMark->instance = $instanceId;
           }
