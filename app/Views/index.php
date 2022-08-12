@@ -4,7 +4,9 @@
 
   <h1>About this page</h1>
 
-  <table>
+  <pre><?php print_r($json_marks); ?></pre>
+
+  <?php /* <table>
     <thead>
       <tr>
         <th>Mark name</th>
@@ -31,8 +33,8 @@
         }
       } ?>
     </tbody>
-    <table>
-      <pre><?php print_r($json_marks); ?></pre>
+  </table>
+*/ ?>
 </section>
 
 <!-- FOOTER: DEBUG INFO + COPYRIGHTS -->
