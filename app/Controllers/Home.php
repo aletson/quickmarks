@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+
 use App\Models\Expansions;
 use App\Models\Zones;
 use App\Models\Marks;
@@ -26,7 +27,7 @@ class Home extends BaseController
             ->join('reports r', 'r.mark_id = marks.id and r.instance_id = ' . $instanceId, 'left outer')
             ->where('z.id', $thisZone->id)
             ->select('marks.*, max(r.tod) as last_kill')->get()->getResult();
-
+          $this->load->database();
           print_r($this->builder->last_query());
           /*if ($thisZone->instances[$instanceId]->marks) {
             foreach ($thisZone->instances[$instanceId]->marks as $thisMark) {
