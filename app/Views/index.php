@@ -30,7 +30,7 @@
       } ?>
     </tbody>
     <table>
-
+<pre><?php print_r($json_marks);?></pre>
 </section>
 
 <!-- FOOTER: DEBUG INFO + COPYRIGHTS -->
