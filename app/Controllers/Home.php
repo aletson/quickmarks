@@ -22,6 +22,9 @@ class Home extends BaseController
         for ($instanceId = 1; $instanceId <= $thisZone->instance_count; $instanceId++) {
           $thisZone->instances[$instanceId] = new \stdClass();
           $thisZone->instances[$instanceId]->marks = $this->Marks->join('zones z', 'marks.zone_id = z.id')->join('expansions e', 'z.expansion_id = e.id')->join('reports r', 'r.mark_id = marks.id')->where('r.instance_id', $instanceId)->select('marks.*, z.name as zone_name, e.name as expansion_name, max(r.tod) as tod')->get()->getResult();
+          foreach($thisZone->instances[$instanceId]->marks as $thisMark) {
+            $thisMark->instance = $instanceId;
+          }
         }
       }
     }
