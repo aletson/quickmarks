@@ -28,7 +28,7 @@ class Home extends BaseController
             ->select('marks.*')->get()->getResult();
           if ($thisZone->instances[$instanceId]->marks) {
             foreach ($thisZone->instances[$instanceId]->marks as $thisMark) {
-              $thisMark->lastKill = intval($this->Reports->select('max(tod) as tod')->where('mark_id = ' . $thisMark->id . ' and instance_id = ' . $instanceId)->get()->getRow()->tod);
+              $thisMark->last_kill = intval($this->Reports->select('max(tod) as tod')->where('mark_id = ' . $thisMark->id . ' and instance_id = ' . $instanceId)->get()->getRow()->tod);
               $thisMark->instance = $instanceId;
             }
           }
