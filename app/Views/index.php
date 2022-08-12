@@ -12,17 +12,22 @@
       </tr>
     </thead>
     <tbody>
-      <?php $expansion = '';
-      foreach ($marks as $thisMark) {
-        if ($thisMark->expansion_name != $expansion_name) {
-          $expansion_name = $thisMark->expansion_name;
-          echo '<tr><td colspan="2"><b><center>' . $expansion_name . '</center></b></td></tr>';
-        } ?>
-        <tr data-mark="<?= $thisMark->id; ?>" data-instance-id="<?= $thisMark->instance_id; ?>">
-          <td><?php echo $thisMark->name; ?> <?php if ($thisMark->instance_id > 1) echo '(I' . $thisMark->instance_id . ')'; ?><br /><small><i>\t<?php if (isset($thisMark->nickname)) echo $thisMark->nickname; ?></i></small></td>
-          <td>last reported <span class="time" data-killed="<?= isset($thisMark->last_kill) ? $thisMark->last_kill : 'never'; ?>"></span><?php if (!isset($thisMark->last_kill) || $thisMark->last_kill < time() - 14400) { ?>
-              <!-- create button if >4 hours --><button class="rounded-full border markButton text-sm" data-mark="<?= $thisMark->id; ?>" data-instance="<?= $thisMark->instance_id; ?>">&nbsp;mark dead&nbsp;</button><?php } ?>
-          <?php } ?>
+      <?php
+      foreach ($expansions as $thisExpansion) {
+        echo '<tr><td colspan="2"><h5><center>' . $expansion_name . '</center></h5></td></tr>';
+        foreach ($thisExpansion->zones as $thisZone) {
+          echo '<tr><td colspan="2"><b>' . $zone_name . '</b></td></tr>';
+          foreach ($thisZone->instances as $thisInstance) {
+            foreach ($thisInstance->marks as $thisMark) {
+      ?>
+              <tr data-mark="<?= $thisMark->id; ?>" data-instance-id="<?= $thisMark->instance_id; ?>">
+                <td><?php echo $thisMark->name; ?> <?php if ($thisMark->instance_id > 1) echo '(I' . $thisMark->instance_id . ')'; ?><br /><small><i>\t<?php if (isset($thisMark->nickname)) echo $thisMark->nickname; ?></i></small></td>
+                <td>last reported <span class="time" data-killed="<?= isset($thisMark->last_kill) ? $thisMark->last_kill : 'never'; ?>"></span><?php if (!isset($thisMark->last_kill) || $thisMark->last_kill < time() - 14400) { ?>
+                    <!-- create button if >4 hours --><button class="rounded-full border markButton text-sm" data-mark="<?= $thisMark->id; ?>" data-instance="<?= $thisMark->instance_id; ?>">&nbsp;mark dead&nbsp;</button><?php } ?>
+          <?php }
+          }
+        }
+      } ?>
     </tbody>
     <table>
 
