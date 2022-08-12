@@ -24,14 +24,14 @@ class Home extends BaseController
           $thisZone->instances[$instanceId] = new \stdClass();
           $thisZone->instances[$instanceId]->marks = $this->Marks
             ->join('zones z', 'marks.zone_id = z.id')
-            ->join('reports r', 'r.mark_id = marks.id and r.instance_id = ' . $instanceId, 'full outer')
             ->where('z.id', $thisZone->id)
-            ->select('marks.*, max(r.tod) as last_kill')->get()->getResult();
-          /*if ($thisZone->instances[$instanceId]->marks) {
+            ->select('marks.*')->get()->getResult();
+          if ($thisZone->instances[$instanceId]->marks) {
             foreach ($thisZone->instances[$instanceId]->marks as $thisMark) {
+              $thisMark->lastKill = $this->Reports->select('max(tod) as tod')->where('mark_id = ' . $thisMark->id . ' and instance_id = ' . $instanceId)->get()->row()->tod;
               $thisMark->instance = $instanceId;
             }
-          } */
+          }
         }
       }
     }
