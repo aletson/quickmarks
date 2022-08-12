@@ -6,7 +6,7 @@
 
   <?php /* <pre><?php print_r($json_marks); ?></pre> */ ?>
 
-  <table>
+  <table class="table-striped">
     <thead>
       <tr>
         <th>Mark name</th>
