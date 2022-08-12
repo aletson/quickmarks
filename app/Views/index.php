@@ -21,9 +21,9 @@
             foreach ($thisInstance->marks as $thisMark) {
       ?>
               <tr data-mark="<?= $thisMark->id; ?>" data-instance-id="<?= $thisMark->instance_id; ?>">
-                <td><?php echo $thisMark->name; ?> <?php if ($thisMark->instance_id > 1) echo '(I' . $thisMark->instance_id . ')'; ?><br /><small><i>\t<?php if (isset($thisMark->nickname)) echo $thisMark->nickname; ?></i></small></td>
+                <td><?php echo $thisMark->name; ?> <?php if ($thisMark->instance_id > 1) echo '(I' . $thisMark->instance . ')'; ?><br /><small><i>\t<?php if (isset($thisMark->nickname)) echo $thisMark->nickname; ?></i></small></td>
                 <td>last reported <span class="time" data-killed="<?= isset($thisMark->last_kill) ? $thisMark->last_kill : 'never'; ?>"></span><?php if (!isset($thisMark->last_kill) || $thisMark->last_kill < time() - 14400) { ?>
-                    <!-- create button if >4 hours --><button class="rounded-full border markButton text-sm" data-mark="<?= $thisMark->id; ?>" data-instance="<?= $thisMark->instance_id; ?>">&nbsp;mark dead&nbsp;</button><?php } ?>
+                    <!-- create button if >4 hours --><button class="rounded-full border markButton text-sm" data-mark="<?= $thisMark->id; ?>" data-instance="<?= $thisMark->instance; ?>">&nbsp;mark dead&nbsp;</button><?php } ?>
           <?php }
           }
         }
