@@ -9,7 +9,7 @@
   foreach ($expansions as $thisExpansion) {
     echo '<h3><center>' . $thisExpansion->name . '</center></h3>';
     foreach ($thisExpansion->zones as $thisZone) {
-      echo '<h4>' . $thisZone->name . '</h4>';
+      echo '<h5>' . $thisZone->name . '</h5>';
   ?>
       <table class="table table-sm table-dark table-striped">
         <tbody>
