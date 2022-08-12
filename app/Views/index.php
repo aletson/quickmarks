@@ -6,7 +6,7 @@
 
   <pre><?php print_r($json_marks); ?></pre>
 
-  <?php /* <table>
+  <table>
     <thead>
       <tr>
         <th>Mark name</th>
@@ -34,7 +34,6 @@
       } ?>
     </tbody>
   </table>
-*/ ?>
 </section>
 
 <!-- FOOTER: DEBUG INFO + COPYRIGHTS -->
