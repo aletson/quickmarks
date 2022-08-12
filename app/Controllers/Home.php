@@ -27,7 +27,7 @@ class Home extends BaseController
             ->where('z.id', $thisZone->id)
             ->select('marks.*, max(r.tod) as last_kill')->get()->getResult();
 
-          print_r($this->db->last_query());
+          print_r($this->builder->last_query());
           /*if ($thisZone->instances[$instanceId]->marks) {
             foreach ($thisZone->instances[$instanceId]->marks as $thisMark) {
               $thisMark->instance = $instanceId;
