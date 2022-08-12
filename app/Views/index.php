@@ -7,7 +7,7 @@
   <?php /* <pre><?php print_r($json_marks); ?></pre> */ ?>
   <?php
   foreach ($expansions as $thisExpansion) {
-    echo '<h3><center>' . $thisExpansion->name . '</center></h3>';
+    echo '<h3 class="display-4"><center>' . $thisExpansion->name . '</center></h3>';
     foreach ($thisExpansion->zones as $thisZone) {
       echo '<h5>' . $thisZone->name . '</h5>';
   ?>
