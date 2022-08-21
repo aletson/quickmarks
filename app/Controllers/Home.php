@@ -47,9 +47,9 @@ class Home extends BaseController
     $mark_id = $this->request->getVar('id');
     $instance = $this->request->getVar('instance');
     $time = intval($this->request->getVar('time'));
-    $this->Marks = new Marks();
-    $data = ['last_kill' => $time, 'instance_id' => $instance];
-    $this->Marks->update($mark_id, $data);
+    $this->Reports = new Reports();
+    $data = ['mark_id' => $mark_id, 'tod' => $time, 'instance_id' => $instance, 'valid' => 1];
+    $this->Reports->insert($data);
     echo 'success';
   }
 }
