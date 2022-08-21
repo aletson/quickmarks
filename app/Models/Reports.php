@@ -10,6 +10,6 @@ class Reports extends Model
 protected $table = 'reports';
 protected $primaryKey = 'id';
 protected $returnType = 'object';
-protected $allowedFields = ['tod', 'reported_by', 'confirmed'];
+protected $allowedFields = ['mark_id', 'instance_id', 'tod', 'reported_by', 'confirmed'];
 
 }
