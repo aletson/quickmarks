@@ -93,6 +93,17 @@
       }).fail(function(data) {
 
       });
+  }).on('click', '#scoutTextParser', function() {
+    let instanceOne = "";
+    let instanceTwo = "";
+    let instanceThree = "";
+    let mapSymbol = "";
+    let lines = $('#scoutText').val().split('\n');
+    for (const line of lines) {
+      // get zone name
+      // get instance if exists
+      // get xy
+    }
   });
   setInterval(regenCountdowns, 1000);
 
