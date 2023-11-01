@@ -52,4 +52,14 @@ class Home extends BaseController
     $this->Reports->insert($data);
     echo 'success';
   }
+
+  public function scout()
+  {
+    $mark_id = $this->request->getVar('id');
+    $instance = $this->request->getVar('instance');
+    $time = intval($this->request->getVar('time'));
+    $this->Scouts = new Scouts();
+    $data = ['mark_id' => $mark_id, 'timestamp' => $time, 'instance_id' => $instance, 'x' => $x, 'y' => $y];
+    $this->Scouts->insert($data);
+    echo 'success';
 }
