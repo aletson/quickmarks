@@ -62,4 +62,12 @@ class Home extends BaseController
     $data = ['mark_id' => $mark_id, 'timestamp' => $time, 'instance_id' => $instance, 'x' => $x, 'y' => $y];
     $this->Scouts->insert($data);
     echo 'success';
+  }
+
+  public function scout_text()
+  {
+    $time = intval($this->request->getVar('time'));
+    // returns an array from the javascript side, let's parse clientside
+  }
 }
+  
